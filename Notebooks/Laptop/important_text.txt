@@ -1,0 +1,1 @@
+NOTE: note that when you are done with coding in colab or virtual env the libaries version of the colab and you local environment libaries versions should match if not error will occur
