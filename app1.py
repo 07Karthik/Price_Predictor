@@ -69,7 +69,7 @@ def Laptop():
 
         # st.markdown('<b><font color="orange" size="30">The predicted price of this configuration is: </font></b>', unsafe_allow_html=True)
 
-        st.title(str(int(np.exp(pipe.predict(query)[0]))))
+        # st.title(str(int(np.exp(pipe.predict(query)[0]))))
 
 
 def Mobile():
@@ -214,16 +214,24 @@ if 'button2_click_state' not in st.session_state:
 # Check if each button was clicked
 if button_clicked1:
     st.session_state.button1_click_state = True
+    st.session_state.button2_click_state = False
 
 if button_clicked2:
     st.session_state.button2_click_state = True
+    st.session_state.button1_click_state = False
 
 # Display content based on button clicks
 if st.session_state.button1_click_state:
-    # Content for the first button
+    # Clear previous content
+    st.empty()
+    # Display content for the first button
     Mobile()
 
 if st.session_state.button2_click_state:
-    # Content for the second button
+    # Clear previous content
+    st.empty()
+    # Display content for the second button
     Laptop()
+
+
 
