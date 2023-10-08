@@ -2,6 +2,22 @@ import streamlit as st
 import pickle
 import pandas as pd
 import numpy as np
+import requests
+from streamlit_lottie import st_lottie
+
+st.set_page_config(page_title="My Webpage",page_icon="🤵")
+
+def load_lottieurl(url):
+    r = requests.get(url)
+    if r.status_code!=200:
+        return None
+    return r.json()
+lottie_coding = load_lottieurl("https://lottie.host/c9e78571-886e-4a40-9285-d22e6422ee48/iXVZeU57Ej.json"
+)
+
+lottie_coding1 = load_lottieurl("https://lottie.host/e3101877-8ed2-4ea4-8780-d7835de800f4/cn3ZqmjzSD.json"
+)
+
 
 # for laptop we use the model is randomforest r2_score:-89%
 def Laptop():
@@ -201,8 +217,16 @@ def Mobile():
 
 
 # Define two buttons with unique keys
-button_clicked1 = st.button("Click For Mobile Price Predictor!", key="button1")
-button_clicked2 = st.button("Click For Laptop Price Predictor!", key="button2")
+with st.container():
+    left,right = st.columns(2)
+    with left:
+        button_clicked1 = st.button("Click For Mobile Price Predictor!📱", key="button1")
+        st_lottie(lottie_coding1,height=200,key='Laptop')
+        button_clicked2 = st.button("Click For Laptop Price Predictor!💻", key="button2")
+    with right:
+        st_lottie(lottie_coding,height=200,key='Mobile')
+
+
 
 # Use a session state to track whether each button has been clicked
 if 'button1_click_state' not in st.session_state:
@@ -224,7 +248,8 @@ if button_clicked2:
 if st.session_state.button1_click_state:
     # Clear previous content
     st.empty()
-    # Display content for the first button
+    # Display con
+    # tent for the first button
     Mobile()
 
 if st.session_state.button2_click_state:
@@ -232,6 +257,4 @@ if st.session_state.button2_click_state:
     st.empty()
     # Display content for the second button
     Laptop()
-
-
 
